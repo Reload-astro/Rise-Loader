@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="utill\imgui\imgui_tables.cpp" />
+    <ClCompile Include="utill\ui\ui.cpp" />
+    <ClCompile Include="utill\imgui\imgui.cpp" />
+    <ClCompile Include="utill\imgui\imgui_demo.cpp" />
+    <ClCompile Include="utill\imgui\imgui_draw.cpp" />
+    <ClCompile Include="utill\imgui\imgui_impl_dx9.cpp" />
+    <ClCompile Include="utill\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="utill\imgui\imgui_tables.cpp" />
+    <ClCompile Include="utill\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="utill\ui\ui.cpp" />
+    <ClCompile Include="utill\addons.cpp" />
+    <ClCompile Include="utill\libs\miniz.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.hpp" />
+    <ClInclude Include="utill\ui\ui.hpp" />
+    <ClInclude Include="utill\imgui\imconfig.hpp" />
+    <ClInclude Include="utill\imgui\imgui.hpp" />
+    <ClInclude Include="utill\imgui\imgui_impl_dx9.hpp" />
+    <ClInclude Include="utill\imgui\imgui_impl_win32.hpp" />
+    <ClInclude Include="utill\imgui\imgui_internal.hpp" />
+    <ClInclude Include="utill\imgui\imstb_rectpack.hpp" />
+    <ClInclude Include="utill\imgui\imstb_textedit.hpp" />
+    <ClInclude Include="utill\imgui\imstb_truetype.hpp" />
+    <ClInclude Include="utill\ui\ui.hpp" />
+    <ClInclude Include="utill\addons.hpp" />
+    <ClInclude Include="utill\globals.hpp" />
+    <ClInclude Include="utill\imgui\imconfig.hpp" />
+    <ClInclude Include="utill\imgui\imgui.hpp" />
+    <ClInclude Include="utill\imgui\imgui_impl_dx9.hpp" />
+    <ClInclude Include="utill\imgui\imgui_impl_win32.hpp" />
+    <ClInclude Include="utill\imgui\imgui_internal.hpp" />
+    <ClInclude Include="utill\imgui\imstb_rectpack.hpp" />
+    <ClInclude Include="utill\imgui\imstb_textedit.hpp" />
+    <ClInclude Include="utill\imgui\imstb_truetype.hpp" />
+    <ClInclude Include="utill\libs\miniz.hpp" />
+  </ItemGroup>
+</Project>

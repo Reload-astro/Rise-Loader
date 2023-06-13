@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rise\Rise", "Rise\Rise.vcxproj", "{82212CF7-C4EA-436C-ADD5-F7AD56122BF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		beta|x64 = beta|x64
+		beta|x86 = beta|x86
+		stable|x64 = stable|x64
+		stable|x86 = stable|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82212CF7-C4EA-436C-ADD5-F7AD56122BF5}.beta|x64.ActiveCfg = beta|x64
+		{82212CF7-C4EA-436C-ADD5-F7AD56122BF5}.beta|x64.Build.0 = beta|x64
+		{82212CF7-C4EA-436C-ADD5-F7AD56122BF5}.beta|x86.ActiveCfg = beta|Win32
+		{82212CF7-C4EA-436C-ADD5-F7AD56122BF5}.beta|x86.Build.0 = beta|Win32
+		{82212CF7-C4EA-436C-ADD5-F7AD56122BF5}.stable|x64.ActiveCfg = stable|x64
+		{82212CF7-C4EA-436C-ADD5-F7AD56122BF5}.stable|x64.Build.0 = stable|x64
+		{82212CF7-C4EA-436C-ADD5-F7AD56122BF5}.stable|x86.ActiveCfg = stable|Win32
+		{82212CF7-C4EA-436C-ADD5-F7AD56122BF5}.stable|x86.Build.0 = stable|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5826AFD4-EB9D-4C95-99FE-FE8B482ABF46}
+	EndGlobalSection
+EndGlobal
