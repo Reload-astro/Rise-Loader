@@ -13,7 +13,6 @@
     <ClCompile Include="utill\imgui\imgui_widgets.cpp" />
     <ClCompile Include="utill\ui\ui.cpp" />
     <ClCompile Include="utill\addons.cpp" />
-    <ClCompile Include="utill\libs\miniz.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.hpp" />
@@ -37,18 +36,8 @@
     <ClInclude Include="utill\imgui\imstb_rectpack.hpp" />
     <ClInclude Include="utill\imgui\imstb_textedit.hpp" />
     <ClInclude Include="utill\imgui\imstb_truetype.hpp" />
-    <ClInclude Include="utill\libs\miniz.hpp" />
-    <ClInclude Include="utill\libs\curl\curl.h" />
-    <ClInclude Include="utill\libs\curl\curlver.h" />
-    <ClInclude Include="utill\libs\curl\easy.h" />
-    <ClInclude Include="utill\libs\curl\header.h" />
-    <ClInclude Include="utill\libs\curl\mprintf.h" />
-    <ClInclude Include="utill\libs\curl\multi.h" />
-    <ClInclude Include="utill\libs\curl\options.h" />
-    <ClInclude Include="utill\libs\curl\stdcheaders.h" />
-    <ClInclude Include="utill\libs\curl\system.h" />
-    <ClInclude Include="utill\libs\curl\typecheck-gcc.h" />
-    <ClInclude Include="utill\libs\curl\urlapi.h" />
-    <ClInclude Include="utill\libs\curl\websockets.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

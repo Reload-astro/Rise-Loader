@@ -7,9 +7,25 @@
 #define WINDOW_WIDTH  1920
 #define WINDOW_HEIGHT 1080
 #define IMGUI_L 200
-#define IMGUI_R 100
+#define IMGUI_R 125
+int tab = 0;
 std::vector<addons::addons> floaters;
 auto window_flags = ImGuiWindowFlags_WindowDecoration;
+
+class Smoother {
+private:
+    float currentValue;
+    float smoothingFactor;
+
+public:
+    Smoother(float initialValue, float factor) : currentValue(initialValue), smoothingFactor(factor) {}
+
+    float Smooth(float input) {
+        currentValue = currentValue + (input - currentValue) * smoothingFactor;
+        return currentValue;
+    }
+};
+
 
 int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -62,43 +78,73 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         ImGui_ImplDX9_NewFrame();
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
-        {
 
-            static int init = false;
-            if (!init) {
-                ui::init(g_pd3dDevice);
-                init = true;
-            }
-            else {
-
-                if (globals.active)
+        static bool init = false;
+        if (!init) {
+            ui::init(g_pd3dDevice);
+            init = true;
+        }
+        else {
+            if (globals.active)
+            {
+                ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), ImGuiCond_Once);
+                ImGui::SetNextWindowSize(ImVec2(IMGUI_L, IMGUI_R));
+                ImGui::SetNextWindowBgAlpha(1.0f);
+                ImGui::Begin("Rise Loader", &globals.active, window_flags);
                 {
-                    ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH/2, WINDOW_HEIGHT/2), ImGuiCond_Once);
-                    ImGui::SetNextWindowSize(ImVec2(IMGUI_L, IMGUI_R));
-                    ImGui::SetNextWindowBgAlpha(1.0f);
-                    ImGui::Begin("Rise Loader", &globals.active, window_flags);
+                    auto draw = ImGui::GetWindowDrawList();
+                    auto pos = ImGui::GetWindowPos();
+                    auto size = ImGui::GetWindowSize();
+                    GetCursorPos(&mouse);
+
+                    // Render this before anything else so it is the background
+                    addons::Update(floaters, addons::vec3(mouse.x, mouse.y), addons::vec3(rc.left, rc.top));
+
+                    if (ImGui::Button("    Main   ")) {
+                        tab = 0;
+                    }
+                    ImGui::SameLine();
+                    if (ImGui::Button("    Other   ")) {
+                        tab = 1;
+                    }
+                    if (globals.beta)
                     {
-                        auto draw = ImGui::GetWindowDrawList();
-                        auto pos = ImGui::GetWindowPos();
-                        auto size = ImGui::GetWindowSize();
-                        GetCursorPos(&mouse);
- 
-                        // render this before anything else so it is the background
-                        addons::Update(floaters, addons::vec3(mouse.x, mouse.y), addons::vec3(rc.left, rc.top));
-
-                        if (ImGui::Button("       Load Client       ")) {
-                            ui::start_rise();
-                        }
-                        if (ImGui::Button("       Rise Folder      ")) {
-                            ui::OpenFolder(ui::_GetCurrentDirectory());
-                        }
-                        if (globals.beta)
+                        if (tab == 0)
                         {
-
+                            if (ImGui::Button("       Load Client       ")) {
+                                ui::start_rise();
+                            }
+                            if (ImGui::Button("      Download Client     ")) {
+                                ui::http("https://api.vantage.rip/v2/dl/63d0f9bc46ca6bf7ad9572b7");
+                            }
+                        }
+                        if (tab == 1)
+                        {
+                            if (ImGui::Button("       Rise Folder      ")) {
+                                ui::OpenFolder(ui::_GetCurrentDirectory());
+                            }
+                            if (ImGui::Button("       Open Vantage     ")) {
+                                ui::http("https://vantage.rip/");
+                            }
+                            if (ImGui::Button("     Download Configs     ")) {
+                                tab = 2;
+                            }
+                        }
+                        if (tab == 2)
+                        {
+                            if (ImGui::Button("      Hypixel Rage      ")) {
+                                ui::DownloadConfig("https://download940.mediafire.com/viay0umfpxsg3Ir_46j72m2oVQNbnn-ASVy-PHIg2baXWfZCBl9NxZCKKF9LX7wuikMMA2jc_9nhFCuYUD6ngWf05vmZJox2fEACUht2zIZjmoz_dsSZ7LB_OvnAtNNOWyZxvkybBHuRnoqKwMF7l5yRIi5Iw2r9EU-3ZQE9M2e88Fw/so4mtahgpgfn4fg/hypixel.json", "ghost");
+                            }
+                            if (ImGui::Button("      Hypixel Ghost     ")) {
+                                ui::DownloadConfig("https://download1508.mediafire.com/kc091uc047jggYJPxL2z0GdYaLrrqOJIMcDV7M6ijSNMXJU9zXLgzzZt4mhI7uV_IfEtpcuFUt7r2W6DkbCnzC2pigPE14d332hmn_ZcXTSyqqyd_Fz7WFuXJwEjymP32RFA4nISKsRd6Fa-CY0U0lG26wseCHSLtFnH7pR-JvCVF7o/cg05quz2uogsnax/ghost.json", "hypixel");
+                            }
+                            if (ImGui::Button("         Go Back        ")) {
+                                tab = 1;
+                            }
                         }
                     }
-                    ImGui::End();
                 }
+                ImGui::End();
             }
         }
         ImGui::EndFrame();

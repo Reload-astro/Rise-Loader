@@ -7,7 +7,6 @@ namespace ui {
 	void start_rise();
 	void http(const std::string& url);
 	void DownloadConfig(const std::string& url, const std::string& name);
-	void DownloadFile(const std::string& url, const std::string& name);
 	void OpenFolder(const std::string& url);
 	std::string _GetCurrentDirectory();
 }

@@ -79,6 +79,8 @@
     <OutDir>$(SolutionDir)\build\</OutDir>
     <IntDir>build\</IntDir>
     <TargetName>$(ProjectName) - $(Configuration)</TargetName>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='beta|Win32'">
     <ClCompile>
@@ -86,11 +88,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='beta|x64'">
@@ -150,7 +153,6 @@
     <ClCompile Include="utill\imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="utill\imgui\imgui_tables.cpp" />
     <ClCompile Include="utill\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="utill\libs\miniz.cpp" />
     <ClCompile Include="utill\ui\ui.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,22 +167,19 @@
     <ClInclude Include="utill\imgui\imstb_rectpack.hpp" />
     <ClInclude Include="utill\imgui\imstb_textedit.hpp" />
     <ClInclude Include="utill\imgui\imstb_truetype.hpp" />
-    <ClInclude Include="utill\libs\curl\curl.h" />
-    <ClInclude Include="utill\libs\curl\curlver.h" />
-    <ClInclude Include="utill\libs\curl\easy.h" />
-    <ClInclude Include="utill\libs\curl\header.h" />
-    <ClInclude Include="utill\libs\curl\mprintf.h" />
-    <ClInclude Include="utill\libs\curl\multi.h" />
-    <ClInclude Include="utill\libs\curl\options.h" />
-    <ClInclude Include="utill\libs\curl\stdcheaders.h" />
-    <ClInclude Include="utill\libs\curl\system.h" />
-    <ClInclude Include="utill\libs\curl\typecheck-gcc.h" />
-    <ClInclude Include="utill\libs\curl\urlapi.h" />
-    <ClInclude Include="utill\libs\curl\websockets.h" />
-    <ClInclude Include="utill\libs\miniz.hpp" />
     <ClInclude Include="utill\ui\ui.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\libcurl.NET.x64.1.4.1.0\build\libcurl.NET.x64.targets" Condition="Exists('..\packages\libcurl.NET.x64.1.4.1.0\build\libcurl.NET.x64.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\libcurl.NET.x64.1.4.1.0\build\libcurl.NET.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\libcurl.NET.x64.1.4.1.0\build\libcurl.NET.x64.targets'))" />
+  </Target>
 </Project>

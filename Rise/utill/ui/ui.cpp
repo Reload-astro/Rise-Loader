@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <fstream>
 #include <filesystem>
+#include <string>
 #include "ui.hpp"
 #include "../globals.hpp"
 #include "../imgui/imgui.hpp"
@@ -18,6 +19,21 @@ std::string ui::_GetCurrentDirectory()
     return std::string(buffer).substr(0, pos);
 }
 
+size_t WriteCallbackD(void* contents, size_t size, size_t nmemb, void* userp) {
+    // Calculate the total size of the downloaded data
+    size_t totalSize = size * nmemb;
+
+    // Cast the user pointer as a std::ofstream pointer
+    std::ofstream* fileStream = static_cast<std::ofstream*>(userp);
+
+    // Write the downloaded data to the file stream
+    fileStream->write(static_cast<const char*>(contents), totalSize);
+
+    // Return the total size of the downloaded data
+    return totalSize;
+}
+
+
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, FILE* file) {
     return fwrite(contents, size, nmemb, file);
 }
@@ -32,19 +48,6 @@ void downloadFile(const std::string& url, const std::string& filepath) {
 void ui::DownloadConfig(const std::string& url, const std::string& name)
 {
     std::string filepath = ui::_GetCurrentDirectory() + "\\save\\Rise\\configs\\"+ name + ".json";
-
-    try {
-        downloadFile(url, filepath);
-        std::cout << "File downloaded successfully." << std::endl;
-    }
-    catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
-}
-
-void ui::DownloadFile(const std::string& url, const std::string& name)
-{
-    std::string filepath = ui::_GetCurrentDirectory() + "\\" + name + ".zip";
 
     try {
         downloadFile(url, filepath);
