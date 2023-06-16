@@ -14,7 +14,7 @@ namespace ui {
 
 namespace ui {
 	inline LPDIRECT3DDEVICE9 dev;
-	inline const char* window_title = "Minecraft Loader";
+	inline const char* window_title = "Rise Loader";
 }
 
 namespace ui {

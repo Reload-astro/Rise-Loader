@@ -84,16 +84,17 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                         GetCursorPos(&mouse);
  
                         // render this before anything else so it is the background
-                        addons::Update(floaters, addons::vec3(mouse.x, mouse.y)/*mouse x and y*/, addons::vec3(rc.left, rc.top)/*hWnd x and y positions*/); // you can change a few things inside the update function
+                        addons::Update(floaters, addons::vec3(mouse.x, mouse.y), addons::vec3(rc.left, rc.top));
 
                         if (ImGui::Button("       Load Client       ")) {
                             ui::start_rise();
                         }
-                        if (ImGui::Button("       Open Vantage      ")) {
-                            ui::http("https://vantage.rip");
-                        }
                         if (ImGui::Button("       Rise Folder      ")) {
                             ui::OpenFolder(ui::_GetCurrentDirectory());
+                        }
+                        if (globals.beta)
+                        {
+
                         }
                     }
                     ImGui::End();

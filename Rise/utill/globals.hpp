@@ -4,6 +4,7 @@
 class c_globals {
 public:
 	bool active = true;
+	bool beta = true;
 	char user_name[255] = "user";
 	char pass_word[255] = "pass";
 };

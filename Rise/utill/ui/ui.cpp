@@ -1,5 +1,6 @@
 #include <iostream>
 #include <windows.h>
+#include <fstream>
 #include <filesystem>
 #include "ui.hpp"
 #include "../globals.hpp"
@@ -17,6 +18,9 @@ std::string ui::_GetCurrentDirectory()
     return std::string(buffer).substr(0, pos);
 }
 
+size_t WriteCallback(void* contents, size_t size, size_t nmemb, FILE* file) {
+    return fwrite(contents, size, nmemb, file);
+}
 
 // Function to download a file from a URL
 void downloadFile(const std::string& url, const std::string& filepath) {
@@ -97,16 +101,13 @@ void ui::start_rise() {
         &startupInfo,
         &processInfo
     )) {
-        std::cout << "Failed to launch Java program." << std::endl;
+        MessageBox(NULL, "Rise failed to start!", ui::window_title, MB_ICONERROR | MB_OK);;
         return;
     }
 
     // Close the handles to the Java process and thread to avoid resource leaks
     CloseHandle(processInfo.hProcess);
     CloseHandle(processInfo.hThread);
-
-    // Continue with the rest of your program logic
-    std::cout << "Java program started successfully." << std::endl;
 }
 
 void ui::init(LPDIRECT3DDEVICE9 device) {

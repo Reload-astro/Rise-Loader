@@ -2786,6 +2786,41 @@ void ImGui::RenderTextClipped(const ImVec2& pos_min, const ImVec2& pos_max, cons
         LogRenderedText(&pos_min, text, text_display_end);
 }
 
+static float staticHue = 1.0;
+static float rainbowSpeed = 0.003;
+
+void ImGui::RenderTextClipped_Rainbow(const ImVec2& pos_min, const ImVec2& pos_max, const char* text, const char* text_end, const ImVec2* text_size_if_known, const ImVec2& align, const ImRect* clip_rect)
+{
+    // Hide anything after a '##' string
+    const char* text_display_end = FindRenderedTextEnd(text, text_end);
+    const int text_len = (int)(text_display_end - text);
+    if (text_len == 0)
+        return;
+
+    ImGuiContext& g = *GImGui;
+    ImGuiWindow* window = g.CurrentWindow;
+    ImDrawList* Draw = ImGui::GetWindowDrawList();
+
+    staticHue -= rainbowSpeed;
+    if (staticHue < -1.f)
+        staticHue += 1.f;
+
+    ImDrawList* drawList = ImGui::GetWindowDrawList();
+    int width = 350;
+
+    for (int i = 0; i < width; i++)
+    {
+        float hue = staticHue + (1.f / static_cast<float>(width)) * i;
+        if (hue < 0.f)
+            hue += 1.f;
+        ImColor cRainbow = ImColor::HSV(hue, 1.f, 1.f);
+        ImGui::PushStyleColor(ImGuiCol_Text,ImVec4(ImColor(cRainbow)));
+        RenderTextClippedEx(window->DrawList, pos_min, pos_max, text, text_display_end, text_size_if_known, align, clip_rect);
+        if (g.LogEnabled)
+            LogRenderedText(&pos_min, text, text_display_end);
+            ImGui::PopStyleColor();
+    }
+}
 
 // Another overly complex function until we reorganize everything into a nice all-in-one helper.
 // This is made more complex because we have dissociated the layout rectangle (pos_min..pos_max) which define _where_ the ellipsis is, from actual clipping of text and limit of the ellipsis display.

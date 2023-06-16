@@ -1,6 +1,8 @@
 #include "addons.hpp"
 
 addons::vec3 gravity;
+static float staticHue = 1.0;
+static float rainbowSpeed = 0.003;
 
 float min(float a, float b)
 {
@@ -79,9 +81,10 @@ void addons::addons::Update()
 
 void addons::addons::Render()
 {
-    ImGui::GetWindowDrawList()->AddText(ImVec2(pos.x, pos.y), color, "R");
-    //ImGui::GetWindowDrawList()->AddCircle(ImVec2(pos.x, pos.y), radius, color,5);
+    ImDrawList* Draw = ImGui::GetWindowDrawList();
+    Draw->AddTextR(ImVec2(pos.x, pos.y), ImColor(255,255,255,255), "R");
 }
+
 
 bool addons::addons::OffScreen()
 {
