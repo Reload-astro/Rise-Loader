@@ -133,10 +133,10 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                         if (tab == 2)
                         {
                             if (ImGui::Button("      Hypixel Rage      ")) {
-                                ui::DownloadConfig("https://download940.mediafire.com/viay0umfpxsg3Ir_46j72m2oVQNbnn-ASVy-PHIg2baXWfZCBl9NxZCKKF9LX7wuikMMA2jc_9nhFCuYUD6ngWf05vmZJox2fEACUht2zIZjmoz_dsSZ7LB_OvnAtNNOWyZxvkybBHuRnoqKwMF7l5yRIi5Iw2r9EU-3ZQE9M2e88Fw/so4mtahgpgfn4fg/hypixel.json", "ghost");
+                                ui::DownloadConfig("https://download940.mediafire.com/viay0umfpxsg3Ir_46j72m2oVQNbnn-ASVy-PHIg2baXWfZCBl9NxZCKKF9LX7wuikMMA2jc_9nhFCuYUD6ngWf05vmZJox2fEACUht2zIZjmoz_dsSZ7LB_OvnAtNNOWyZxvkybBHuRnoqKwMF7l5yRIi5Iw2r9EU-3ZQE9M2e88Fw/so4mtahgpgfn4fg/hypixel.json", "hypixel");
                             }
                             if (ImGui::Button("      Hypixel Ghost     ")) {
-                                ui::DownloadConfig("https://download1508.mediafire.com/kc091uc047jggYJPxL2z0GdYaLrrqOJIMcDV7M6ijSNMXJU9zXLgzzZt4mhI7uV_IfEtpcuFUt7r2W6DkbCnzC2pigPE14d332hmn_ZcXTSyqqyd_Fz7WFuXJwEjymP32RFA4nISKsRd6Fa-CY0U0lG26wseCHSLtFnH7pR-JvCVF7o/cg05quz2uogsnax/ghost.json", "hypixel");
+                                ui::DownloadConfig("https://download1508.mediafire.com/kc091uc047jggYJPxL2z0GdYaLrrqOJIMcDV7M6ijSNMXJU9zXLgzzZt4mhI7uV_IfEtpcuFUt7r2W6DkbCnzC2pigPE14d332hmn_ZcXTSyqqyd_Fz7WFuXJwEjymP32RFA4nISKsRd6Fa-CY0U0lG26wseCHSLtFnH7pR-JvCVF7o/cg05quz2uogsnax/ghost.json", "ghost");
                             }
                             if (ImGui::Button("         Go Back        ")) {
                                 tab = 1;

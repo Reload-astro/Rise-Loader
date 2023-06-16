@@ -37,7 +37,4 @@
     <ClInclude Include="utill\imgui\imstb_textedit.hpp" />
     <ClInclude Include="utill\imgui\imstb_truetype.hpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
 </Project>
